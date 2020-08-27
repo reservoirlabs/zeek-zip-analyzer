@@ -1,5 +1,21 @@
-
-ZIP::Analyzer_ZIP
+Zeek ZIP File Analyzer
 =================================
 
-Zip file extraction
+libzip 1.7.1  must be installed
+
+This analyzer identifies ZIP signatures and extracts all files contained in an archive. The following mimetypes are supported:
+
+- "application/zip"
+- "application/epub+zip"
+- "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+- "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+- "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+
+Recursive analysis is also supported which allows analysis of nested zip files. Furthermore, it is possible to analyze decompressed files if there is a supported analyzer for its mimetype by adding a regex pattern and analyzer tag pair to ZIP::config_analyzers
+
+In order to retrieve the right analyzer tag of a built in analyzer, take the suffix of the enums here: https://docs.zeek.org/en/current/script-reference/file-analyzers.html#file-analyzers
+
+Example of attaching PDF analyzer to all files with mimetype "application/pdf" for recursive analysis:
+
+redef ZIP::config_analyzers += { ["application/pdf"] = "PDF", };
+
