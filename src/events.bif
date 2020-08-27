@@ -1,0 +1,25 @@
+## R-SCOPE RIGHTS
+
+## Generated for every file with a ZIP signature
+##
+## f: File object
+## a: Analyzer id
+## s: Names of all the contained files
+##
+event zip_file_header%(f: fa_file, s: string, metadata: ZIP_Analyzer::Metadata%);
+
+## Generated on each successful inflation of a file
+##
+## f: File object
+## a: Analyzer id
+## info: The file's decompressed bytes and length 
+##
+event zip_file_info%(f: fa_file, info: ZIP_Analyzer::Info%);
+
+## Generated on libzip parse error
+##
+## f: File object
+## a: Analyzer id
+## s: String representation of error
+##
+event zip_error%(f: fa_file, s: string%);

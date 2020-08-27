@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# Hooks to add custom options to the configure script.
+#
+
+plugin_usage()
+{
+    cat <<EOF
+    --with-libzip=DIR          Path to libzip 
+EOF
+}
+
+plugin_option()
+{
+    case "$1" in
+        --with-libzip=*)
+            append_cache_entry LIBZIP_ROOT_DIR PATH $optarg
+            return 0
+            ;;
+
+        *)
+            return 1;
+            ;;
+    esac
+}

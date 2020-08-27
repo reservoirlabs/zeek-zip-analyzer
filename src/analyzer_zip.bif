@@ -1,0 +1,10 @@
+# R-Scope Rights
+
+module ZIP_Analyzer;
+
+const MAX_DEPTH: count;
+const MAX_SPACE_USAGE: count;
+
+type Info: record;
+type Metadata: record;
+
