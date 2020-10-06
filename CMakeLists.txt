@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 project(ZeekPluginAnalyzer_ZIP)
 
+set(CMAKE_CXX_FLAGS "-Wfatal-errors ${CMAKE_CXX_FLAGS}")
+
 include(ZeekPlugin)
 
 find_package(libzip)

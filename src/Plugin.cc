@@ -1,7 +1,6 @@
-/* R-SCOPE RIGHTS */
-
 #include "ZIP.h"
 #include "Plugin.h"
+#include "file_analysis/Component.h"
 
 namespace plugin { namespace Analyzer_ZIP { Plugin plugin; } }
 

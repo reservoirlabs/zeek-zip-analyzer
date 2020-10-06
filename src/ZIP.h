@@ -1,5 +1,3 @@
-/* R-SCOPE RIGHTS */
-
 #include <file_analysis/Analyzer.h>
 #include <file_analysis/File.h>
 
@@ -13,6 +11,8 @@
 #include "events.bif.h"
 #include "analyzer_zip.bif.h"
 #include "zip.h"
+
+using namespace std;
 	    
 namespace file_analysis {
 
