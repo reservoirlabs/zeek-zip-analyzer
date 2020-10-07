@@ -1,8 +1,4 @@
-/* R-SCOPE RIGHTS */
-
-
 #include <file_analysis/Manager.h>
-
 #include "ZIP.h"
 
 using namespace file_analysis;
@@ -113,7 +109,7 @@ void ZIP::RecursiveAnalysis(zip_t* handle, zip_error_t* error, int max_depth, in
             if (inflated_buf) {
                 RecordVal* info = new RecordVal(BifType::Record::ZIP_Analyzer::Info);
                 info->Assign(0, new StringVal(inflated_size, static_cast<const char*>(inflated_buf)));
-                info->Assign(1, new Val(inflated_size, TYPE_COUNT));
+                info->Assign(1, zeek::val_mgr->Count(inflated_size));
                 BifEvent::generate_zip_file_info((analyzer::Analyzer*)this, GetFile()->GetVal()->Ref(), info);
 
                 string sig_match = file_mgr->DetectMIME(reinterpret_cast<const unsigned char*>(inflated_buf), inflated_size);
@@ -218,14 +214,14 @@ zip_t* ZIP::GetHandle(void* buf, int size, zip_error_t* error) {
     zip_source_stat(zip_src, &sb);
                 
     RecordVal* metadata = new RecordVal(BifType::Record::ZIP_Analyzer::Metadata);
-    metadata->Assign(0, new Val(sb.valid, TYPE_COUNT));
-    metadata->Assign(1, new Val(sb.size, TYPE_COUNT));
-    metadata->Assign(2, new Val(sb.comp_size, TYPE_COUNT));
-    metadata->Assign(3, new Val(sb.mtime, TYPE_COUNT));
-    metadata->Assign(4, new Val(sb.crc, TYPE_COUNT));
-    metadata->Assign(5, new Val(sb.comp_method, TYPE_COUNT));
-    metadata->Assign(6, new Val(sb.encryption_method, TYPE_COUNT));
-    metadata->Assign(7, new Val(sb.flags, TYPE_COUNT));
+    metadata->Assign(0, zeek::val_mgr->Count(sb.valid)); 
+    metadata->Assign(1, zeek::val_mgr->Count(sb.size));
+    metadata->Assign(2, zeek::val_mgr->Count(sb.comp_size));
+    metadata->Assign(3, zeek::val_mgr->Count(sb.mtime));
+    metadata->Assign(4, zeek::val_mgr->Count(sb.crc));
+    metadata->Assign(5, zeek::val_mgr->Count(sb.comp_method));
+    metadata->Assign(6, zeek::val_mgr->Count(sb.encryption_method));
+    metadata->Assign(7, zeek::val_mgr->Count(sb.flags));
     
     BifEvent::generate_zip_file_header((analyzer::Analyzer *)this,
             GetFile()->GetVal()->Ref(),
